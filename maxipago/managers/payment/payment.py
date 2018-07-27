@@ -157,7 +157,19 @@ class PaymentManager(ManagerTransaction):
             ('expiration_date', {'translated_name': 'transactionDetail/payType/boleto/expirationDate'}),
             ('number', {'translated_name': 'transactionDetail/payType/boleto/number'}),
             ('instructions', {'translated_name': 'transactionDetail/payType/boleto/instructions', 'required': False}),
-            ('format', {'translated_name': 'transactionDetail/payType/boleto/format', 'required': False}),
+            ('format', {'translated_name': 'transactionDetail/payType/boleto/format', 'required': False}),            
+            ## desconto
+            ('discount_date', {'translated_name': 'transactionDetail/payType/boleto/discount/date', 'required': False}),
+            ('discount_type', {'translated_name': 'transactionDetail/payType/boleto/discount/type', 'required': False}),
+            ('discount_value', {'translated_name': 'transactionDetail/payType/boleto/discount/value', 'required': False})
+            ## multa
+            ('charge_date', {'translated_name': 'transactionDetail/payType/boleto/charge/date', 'required': False}),
+            ('charge_type', {'translated_name': 'transactionDetail/payType/boleto/charge/type', 'required': False}),
+            ('charge_value', {'translated_name': 'transactionDetail/payType/boleto/charge/value', 'required': False})
+            ## juros, taxas
+            ('rate_date', {'translated_name': 'transactionDetail/payType/boleto/rate/date', 'required': False}),
+            ('rate_type', {'translated_name': 'transactionDetail/payType/boleto/rate/type', 'required': False}),
+            ('rate_value', {'translated_name': 'transactionDetail/payType/boleto/rate/value', 'required': False})
             
             ('charge_total', {'translated_name': 'payment/chargeTotal'}),
         )
