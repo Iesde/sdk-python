@@ -1,7 +1,7 @@
 # coding: utf-8
 from maxipago.managers.base import ManagerTransaction, ManagerApi
 from maxipago.requesters.payment import PaymentRecurringRequester
-
+from maxipago.resources.payment import PaymentResource
 
 class PaymentRecurringManager(ManagerTransaction):
 
@@ -29,9 +29,9 @@ class PaymentRecurringManager(ManagerTransaction):
             ('recurring_installments', {'translated_name': 'recurring/installments'}),
             ('recurring_failure_threshold', {'translated_name': 'recurring/failureThreshold', 'required': False}),
         )
-
+        
         requester = PaymentRecurringRequester(fields, kwargs)
-        return self.send(command='recurringPayment', requester=requester)
+        return self.send(command='recurringPayment', requester=requester, resource=PaymentResource)
 
     def delete(self, **kwargs):
         fields = (

@@ -26,7 +26,7 @@ setup(
     description='SDK python',
     license='MIT',
     keywords='',
-    url='https://github.com/tfedatto/sdk-python',
+    url='https://github.com/tsneu/sdk-python',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
     long_description=read_file('README.md'),
     classifiers=[
