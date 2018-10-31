@@ -20,12 +20,12 @@ class PaymentRecurringManager(ManagerTransaction):
             ('currency_code', {'translated_name': 'payment/currencyCode', 'required': True}),
 
             ('recurring_action', {'translated_name': 'recurring/action', 'default': 'new'}),
-            ('recurring_start', {'translated_name': 'recurring/startDate'}),
-            ('recurring_last', {'translated_name': 'recurring/lastDate'}),
+            ('recurring_start', {'translated_name': 'recurring/startDate', 'required': False}),
+            ('recurring_last', {'translated_name': 'recurring/lastDate', 'required': False}),
             ('recurring_frequency', {'translated_name': 'recurring/frequency'}),
             ('recurring_period', {'translated_name': 'recurring/period'}),
-            ('recurring_first_amount', {'translated_name': 'recurring/firstAmount'}),
-            ('recurring_last_amount', {'translated_name': 'recurring/lastAmount'}),
+            ('recurring_first_amount', {'translated_name': 'recurring/firstAmount', 'required': False}),
+            ('recurring_last_amount', {'translated_name': 'recurring/lastAmount', 'required': False}),
             ('recurring_installments', {'translated_name': 'recurring/installments'}),
             ('recurring_failure_threshold', {'translated_name': 'recurring/failureThreshold', 'required': False}),
         )
