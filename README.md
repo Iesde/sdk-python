@@ -1,1 +1,1 @@
-Future home of the Python lib.
+pyOpenSSL - necessário para a biblioteca Requests.
