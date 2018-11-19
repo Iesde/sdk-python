@@ -1,6 +1,6 @@
 pyOpenSSL - necessario para a biblioteca Requests.
 
-#Historico de versoes:
+# Historico de versoes:
 
 1.2.0: Criacao e adicao de resource para cancelamento de recorrencia.
 
