@@ -2,6 +2,7 @@
 from maxipago.managers.base import ManagerTransaction, ManagerApi
 from maxipago.requesters.payment import PaymentRecurringRequester
 from maxipago.resources.payment import PaymentResource
+from maxipago.resources.cancel import CancelResource
 
 class PaymentRecurringManager(ManagerTransaction):
 
@@ -39,6 +40,6 @@ class PaymentRecurringManager(ManagerTransaction):
         )
 
         requester = PaymentRecurringRequester(fields, kwargs)
-
+        
         manager = ManagerApi(maxid=self.maxid, api_key=self.api_key, api_version=self.api_version, sandbox=self.sandbox)
-        return manager.send(command='cancel-recurring', requester=requester)
+        return manager.send(command='cancel-recurring', requester=requester, resource=CancelResource)

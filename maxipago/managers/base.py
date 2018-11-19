@@ -61,7 +61,7 @@ class ManagerApi(Manager):
             create_element_recursively(request, key).text = value
 
         xml_data = etree.tostring(root, pretty_print=True, encoding='UTF-8', xml_declaration=True)
-
+        
         response = self.request(xml_data)
         if resource:
             return resource(data=response.content, requester=requester, manager=self)
