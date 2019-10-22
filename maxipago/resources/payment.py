@@ -13,6 +13,7 @@ class PaymentResource(Resource):
         self.captured = False
     
         tree = etree.parse(BytesIO(self.data))
+                
         error_code = tree.find('errorCode')
         if error_code is not None and error_code.text != '0':
             error_message = tree.find('errorMsg').text

@@ -56,12 +56,11 @@ class ManagerApi(Manager):
         etree.SubElement(root, 'command').text = command
 
         request = etree.SubElement(root, 'request')
-
+        
         for key, value in params:
-            create_element_recursively(request, key).text = value
+            create_element_recursively(request, key).text = str(value)
 
         xml_data = etree.tostring(root, pretty_print=True, encoding='UTF-8', xml_declaration=True)
-        
         response = self.request(xml_data)
         if resource:
             return resource(data=response.content, requester=requester, manager=self)
@@ -76,7 +75,6 @@ class ManagerTransaction(Manager):
             params = requester.translated_data
 
         root = etree.Element('transaction-request')
-
         etree.SubElement(root, 'version').text = self.api_version
 
         verification = etree.SubElement(root, 'verification')
