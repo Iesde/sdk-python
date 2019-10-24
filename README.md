@@ -2,6 +2,8 @@ pyOpenSSL - necessario para a biblioteca Requests.
 
 # Historico de versoes:
 
+1.2.2: #BUG FIX
+
 1.2.1: Adicionado recurso para alteração de recorrencia
 
 1.2.0: Criacao e adicao de resource para cancelamento de recorrencia.
