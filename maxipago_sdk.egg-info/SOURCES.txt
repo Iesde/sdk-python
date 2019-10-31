@@ -21,10 +21,10 @@ maxipago/requesters/payment/payment.py
 maxipago/requesters/payment/recurring.py
 maxipago/resources/__init__.py
 maxipago/resources/base.py
-maxipago/resources/cancel.py
 maxipago/resources/card.py
 maxipago/resources/customer.py
 maxipago/resources/payment.py
+maxipago/resources/recurring.py
 maxipago/utils/__init__.py
 maxipago/utils/payment_processors.py
 maxipago/utils/xml.py

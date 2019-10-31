@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: maxipago-sdk
-Version: 1.2.1
+Version: 1.2.2
 Summary: SDK python
 Home-page: https://github.com/tsneu/sdk-python
 Author: Stored
@@ -9,6 +9,8 @@ License: MIT
 Description: pyOpenSSL - necessario para a biblioteca Requests.
         
         # Historico de versoes:
+        
+        1.2.2: #BUG FIX
         
         1.2.1: Adicionado recurso para alteração de recorrencia
         
