@@ -1,14 +1,16 @@
-Metadata-Version: 1.1
+Metadata-Version: 1.2
 Name: maxipago-sdk
-Version: 1.2.2
+Version: 1.2.3
 Summary: SDK python
-Home-page: https://github.com/tsneu/sdk-python
+Home-page: https://github.com/joma-s/maxipago-sdk-python
 Author: Stored
 Author-email: contato@stored.com.br
 License: MIT
 Description: pyOpenSSL - necessario para a biblioteca Requests.
         
         # Historico de versoes:
+
+        1.2.3: Card e Customer resources atualizados para python 3 (io.BytesIO no lugar de StringIO)
         
         1.2.2: #BUG FIX
         
