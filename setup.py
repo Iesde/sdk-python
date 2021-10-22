@@ -33,7 +33,7 @@ setup(
         "Topic :: Utilities",
     ],
     install_requires=[
-        'requests==2.20.0',
+        'requests>=2.22.0',
         'lxml==4.1.1',
         'pyOpenSSL==18.0.0'
     ],
