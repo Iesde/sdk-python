@@ -1,7 +1,7 @@
 # coding: utf-8
 from .base import ManagerTransaction
 from maxipago.requesters.pix import PixRequester
-
+from maxipago.utils import etree
 
 class PixManager(ManagerTransaction):
 
@@ -15,11 +15,12 @@ class PixManager(ManagerTransaction):
         requester = PixRequester(fields, kwargs)
         return self.send(command='sale', requester=requester)
 
-    def get(self, **kwargs):
-        fields = (
-            # ('transaction_id', {'translated_name': 'transactionID'}),
-            ('order_id', {'translated_name': 'orderID'}),
-            # ('referenceNum', {'translated_name': 'referenceNum'}),
-        )
-        requester = PixRequester(fields, kwargs)
-        return self.send(command='authente', requester=requester)
+    def xml_to_dict(self, content):
+        xmlDict = {}
+        tree = etree.fromstring(content)
+        for child in tree.iter('*'):
+            childrens = child.getchildren()
+            for chil in childrens:
+                xmlDict[chil.tag] = chil.text
+
+        return xmlDict

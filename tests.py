@@ -330,12 +330,7 @@ class MaxipagoTestCase(unittest.TestCase):
             chargeTotal=10,
             expirationTime=300
         )
-        tree = etree.fromstring(response.content)
-        xmlDict = {}
-        for child in tree.iter('*'):
-            childrens = child.getchildren()
-            for chil in childrens:
-                xmlDict[chil.tag] = chil.text       
+        xmlDict = self.maxipago.pix.xml_to_dict(response.content)
 
         self.assertEqual(response.status_code, 200)
         self.assertIn("emv", xmlDict)
