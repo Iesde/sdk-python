@@ -3,13 +3,13 @@ import os
 import unittest
 from datetime import date
 from maxipago import Maxipago, exceptions
-from maxipago.utils import payment_processors
+from maxipago.utils import payment_processors, etree
 from random import randint
+from time import sleep
 
 
 MAXIPAGO_ID = os.getenv('MAXIPAGO_ID')
 MAXIPAGO_API_KEY = os.getenv('MAXIPAGO_API_KEY')
-
 
 class MaxipagoTestCase(unittest.TestCase):
 
@@ -322,6 +322,18 @@ class MaxipagoTestCase(unittest.TestCase):
 
         self.assertFalse(response.authorized)
         self.assertFalse(response.captured)
+
+    def test_payment_order_with_pix(self):
+        response = self.maxipago.pix.add(
+            referenceNum=randint(1, 100000),
+            processorID=payment_processors.TEST,
+            chargeTotal=10,
+            expirationTime=300
+        )
+        xmlDict = self.maxipago.pix.xml_to_dict(response.content)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("emv", xmlDict)
 
     def test_http_exception(self):
         CUSTOMER_ID = randint(1, 100000)

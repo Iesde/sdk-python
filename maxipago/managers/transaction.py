@@ -7,7 +7,7 @@ class TransactionManager(ManagerRapi):
 
     def get(self, **kwargs):
         fields = (
-            ('transaction_id', {'translated_name': 'transactionId'}),
+            ('transaction_id', {'translated_name': 'filterOptions/transactionId'}),
         )
         requester = TransactionRequester(fields, kwargs)
         return self.send(command='transactionDetailReport', requester=requester)
