@@ -27,26 +27,6 @@ class MaxipagoTestCase(unittest.TestCase):
 
         self.assertTrue(getattr(response, 'id', False))
 
-    def test_add_customer_already_existing(self):
-        CUSTOMER_ID = randint(1, 100000)
-
-        # creating customer with random id.
-        response = self.maxipago.customer.add(
-            customer_id=CUSTOMER_ID,
-            first_name='Fulano',
-            last_name='de Tal',
-        )
-
-        self.assertTrue(hasattr(response, 'id'))
-
-        # creating customer with the same id.
-        with self.assertRaises(exceptions.CustomerAlreadyExists):
-            response = self.maxipago.customer.add(
-                customer_id=CUSTOMER_ID,
-                first_name='Fulano',
-                last_name='de Tal',
-            )
-
     def test_delete_customer(self):
         CUSTOMER_ID = randint(1, 100000)
 
@@ -323,17 +303,52 @@ class MaxipagoTestCase(unittest.TestCase):
         self.assertFalse(response.authorized)
         self.assertFalse(response.captured)
 
-    def test_payment_order_with_pix(self):
+    def test_pix_create(self):
         response = self.maxipago.pix.add(
             referenceNum=randint(1, 100000),
             processorID=payment_processors.TEST,
             chargeTotal=10,
             expirationTime=300
         )
-        xmlDict = self.maxipago.pix.xml_to_dict(response.content)
+
+        self.assertTrue(response.approved)
+        self.assertIsNotNone(response.emv) # código pix copia e cola
+        self.assertIsNotNone(response.imagem_base64) # qr code
+        self.assertEqual(response.response_code, '0')
+        self.assertEqual(response.processor_message, 'APPROVED')
+        self.assertIsNotNone(response.order_id)
+        self.assertIsNotNone(response.processor_transaction_id)
+        self.assertIsNotNone(response.processor_reference_number)
+
+    def test_pix_create_exception(self):
+        with self.assertRaises(exceptions.PaymentException):
+            # Requisição sem `expirationTime`
+            self.maxipago.pix.add(
+                referenceNum=randint(1, 100000),
+                processorID=payment_processors.TEST,
+                chargeTotal=10,
+            )
+
+    def test_get_transaction_pix(self):
+        # Create pix
+        ref = randint(1, 100000)
+        response = self.maxipago.pix.add(
+            referenceNum=ref,
+            processorID=payment_processors.TEST,
+            chargeTotal=10,
+            expirationTime=300
+        )
+        tid = response.transaction_id
+
+        response = self.maxipago.transaction.get(transaction_id=tid)
+        r_json = self.maxipago.transaction.to_json(response.content)
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn("emv", xmlDict)
+        self.assertIsNotNone(r_json.get("transactionId"))
+        self.assertIsNotNone(r_json.get("emv"))
+        self.assertIsNotNone(r_json.get("imagem_base64"))
+        self.assertEqual(r_json.get("referenceNumber"), str(ref))
+        self.assertEqual(r_json.get("transactionAmount"), "10.00")
 
     def test_http_exception(self):
         CUSTOMER_ID = randint(1, 100000)

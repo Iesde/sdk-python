@@ -1,6 +1,7 @@
 # coding: utf-8
-from .base import ManagerTransaction
+from maxipago.managers.base import ManagerTransaction
 from maxipago.requesters.pix import PixRequester
+from maxipago.resources.pix import PixResource
 from maxipago.utils import etree
 
 class PixManager(ManagerTransaction):
@@ -13,14 +14,4 @@ class PixManager(ManagerTransaction):
             ('expirationTime', {'translated_name': 'transactionDetail/payType/pix/expirationTime', 'required': False}),
         )
         requester = PixRequester(fields, kwargs)
-        return self.send(command='sale', requester=requester)
-
-    def xml_to_dict(self, content):
-        xmlDict = {}
-        tree = etree.fromstring(content)
-        for child in tree.iter('*'):
-            childrens = child.getchildren()
-            for chil in childrens:
-                xmlDict[chil.tag] = chil.text
-
-        return xmlDict
+        return self.send(command='sale', requester=requester, resource=PixResource)
