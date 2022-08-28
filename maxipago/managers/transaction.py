@@ -1,7 +1,7 @@
 # coding: utf-8
 from maxipago.managers.base import ManagerRapi
 from maxipago.requesters.transaction import TransactionRequester
-
+from maxipago.utils import etree
 
 class TransactionManager(ManagerRapi):
 
@@ -36,3 +36,13 @@ class TransactionManager(ManagerRapi):
         )
         requester = TransactionRequester(fields, kwargs)
         return self.send(command='checkRequestStatus', requester=requester)
+
+    def to_json(self, content):
+        data = {}
+        tree = etree.fromstring(content)
+        for child in tree.iter('*'):
+            children = child.getchildren()
+            for item in children:
+                data[item.tag] = item.text
+
+        return data

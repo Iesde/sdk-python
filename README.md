@@ -2,7 +2,11 @@ pyOpenSSL - necessario para a biblioteca Requests.
 
 # Historico de versoes:
 
-1.2.3: Card e Customer resources atualizados para python 3 (io.BytesIO no lugar de StringIO) 
+1.2.5: Adiciona PxResource e melhorias nos testes pix
+
+1.2.4: Adiciona criação Pix e corrige requisição Transaction.get()
+
+1.2.3: Card e Customer resources atualizados para python 3 (io.BytesIO no lugar de StringIO)
 
 1.2.2: #BUG FIX
 
