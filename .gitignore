@@ -8,5 +8,6 @@ build/
 dist/
 maxipago.egg-info/
 maxipago1.0.0.egg-info/
+*.egg-info/
 tutorial_env/
 
