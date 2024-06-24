@@ -23,18 +23,18 @@ setup(
     version=get_version(),
     author='Stored',
     author_email='contato@stored.com.br',
-    description='SDK python',
+    description='SDK Python for Maxipago',
     license='MIT',
     keywords='',
-    url='https://github.com/tsneu/sdk-python',
+    url='https://github.com/joma-s/maxipago-sdk-python',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
     long_description=read_file('README.md'),
     classifiers=[
         "Topic :: Utilities",
     ],
     install_requires=[
-        'requests==2.20.0',
-        'lxml==4.1.1',
-        'pyOpenSSL==18.0.0'
+        'requests>=2.22.0',
+        'lxml>=4.6.4',
+        'pyOpenSSL>=18.0.0'
     ],
 )

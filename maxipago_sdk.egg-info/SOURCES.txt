@@ -1,3 +1,4 @@
+LICENSE
 README.md
 setup.py
 maxipago/__init__.py
@@ -7,6 +8,7 @@ maxipago/managers/__init__.py
 maxipago/managers/base.py
 maxipago/managers/card.py
 maxipago/managers/customer.py
+maxipago/managers/pix.py
 maxipago/managers/transaction.py
 maxipago/managers/payment/__init__.py
 maxipago/managers/payment/payment.py
@@ -15,6 +17,7 @@ maxipago/requesters/__init__.py
 maxipago/requesters/base.py
 maxipago/requesters/card.py
 maxipago/requesters/customer.py
+maxipago/requesters/pix.py
 maxipago/requesters/transaction.py
 maxipago/requesters/payment/__init__.py
 maxipago/requesters/payment/payment.py
@@ -24,6 +27,7 @@ maxipago/resources/base.py
 maxipago/resources/card.py
 maxipago/resources/customer.py
 maxipago/resources/payment.py
+maxipago/resources/pix.py
 maxipago/resources/recurring.py
 maxipago/utils/__init__.py
 maxipago/utils/payment_processors.py
